@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pondok Pesantren Al Idrus Kalikidang | Wonosamodro, Boyolali</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config={theme:{extend:{colors:{primary:'#0A6847','primary-light':'#14A06B','primary-dark':'#064E34',accent:'#C5A55A','accent-light':'#D4BC7C',dark:'#080F0B','dark-secondary':'#0D1A14',cream:'#E8E0D0',muted:'#7A8A7E'},fontFamily:{display:['Playfair Display','serif'],body:['Poppins','sans-serif'],arabic:['Amiri','serif']}}}}
+</script>
+<style>
+:root{--bg:#080F0B;--bg2:#0D1A14;--fg:#E8E0D0;--muted:#7A8A7E;--accent:#C5A55A;--primary:#0A6847;--card:rgba(10,40,28,0.55);--border:rgba(197,165,90,0.2);--glass:rgba(10,40,28,0.35)}
+*{margin:0;padding:0;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:var(--primary) var(--bg)}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+
+#preloader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+#preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{width:110px;height:110px;animation:pulseLogo 2s ease-in-out infinite}
+.loader-logo img{width:100%;height:100%;object-fit:contain;border-radius:20px;border:3px solid var(--accent);background:rgba(255,255,255,0.95);padding:8px;box-shadow:0 0 30px rgba(197,165,90,0.5)}
+@keyframes pulseLogo{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.08);opacity:1}}
+.loader-text{margin-top:28px;font-family:'Amiri',serif;font-size:1.4rem;color:var(--accent);animation:pulse2 2s ease-in-out infinite;text-align:center;line-height:1.8}
+@keyframes pulse2{0%,100%{opacity:.5}50%{opacity:1}}
+
+.islamic-pattern{position:relative}
+.islamic-pattern::before{content:'';position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 5L43.5 25L63 17L50 33L70 40L50 47L63 63L43.5 55L40 75L36.5 55L17 63L30 47L10 40L30 33L17 17L36.5 25Z' fill='none' stroke='%23C5A55A' stroke-width='0.8'/%3E%3C/svg%3E");pointer-events:none}
+
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px}
+.glass-strong{background:rgba(10,40,28,0.7);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--border);border-radius:16px}
+
+.card-3d{transform-style:preserve-3d;perspective:1000px;transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.card-3d:hover{transform:translateY(-8px)}
+
+.glow-accent{box-shadow:0 0 30px rgba(197,165,90,0.15),0 0 60px rgba(197,165,90,0.05)}
+.glow-primary{box-shadow:0 0 30px rgba(10,104,71,0.3),0 0 60px rgba(10,104,71,0.1)}
+
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:var(--fg);padding:12px 32px;border-radius:12px;font-weight:600;border:none;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(10,104,71,0.4)}
+.btn-primary::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(transparent,rgba(255,255,255,0.1),transparent);transform:rotate(45deg);transition:.5s}
+.btn-primary:hover::after{left:100%}
+.btn-accent{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#080F0B;padding:12px 32px;border-radius:12px;font-weight:600;border:none;cursor:pointer;transition:all .3s}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(197,165,90,0.4)}
+.btn-outline{background:transparent;color:var(--accent);padding:12px 32px;border-radius:12px;font-weight:600;border:2px solid var(--accent);cursor:pointer;transition:all .3s}
+.btn-outline:hover{background:var(--accent);color:#080F0B;transform:translateY(-2px)}
+
+#hero-canvas{position:absolute;inset:0;z-index:0}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.active{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.active{opacity:1;transform:translateX(0)}
+
+.nav-link{position:relative;padding:4px 0;transition:color .3s}
+.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.nav-link:hover{color:var(--accent)}
+
+.form-input{background:rgba(10,40,28,0.5);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--fg);font-family:'Poppins',sans-serif;transition:all .3s;width:100%;outline:none}
+.form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(197,165,90,0.15)}
+.form-input::placeholder{color:var(--muted)}
+select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23C5A55A'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+
+.toast-container{position:fixed;top:24px;right:24px;z-index:10000;display:flex;flex-direction:column;gap:12px}
+.toast{padding:16px 24px;border-radius:12px;color:var(--fg);font-size:.9rem;animation:slideInToast .4s ease;min-width:280px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(20px)}
+.toast-success{background:rgba(10,104,71,0.9);border:1px solid rgba(20,160,107,0.5)}
+.toast-error{background:rgba(180,40,40,0.9);border:1px solid rgba(220,60,60,0.5)}
+@keyframes slideInToast{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+
+#lightbox{position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+#lightbox.open{display:flex}
+#lightbox img{max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain}
+
+#mobile-menu{position:fixed;inset:0;z-index:9000;background:rgba(8,15,11,0.97);backdrop-filter:blur(30px);transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+#mobile-menu.open{transform:translateX(0)}
+
+.tab-btn{padding:10px 24px;border-radius:10px;font-weight:500;cursor:pointer;transition:all .3s;border:1px solid transparent;background:transparent;color:var(--muted)}
+.tab-btn.active{background:var(--primary);color:var(--fg);border-color:var(--primary-light)}
+.tab-btn:hover:not(.active){color:var(--fg);background:rgba(10,104,71,0.2)}
+
+.donation-amount{padding:12px 20px;border-radius:10px;border:2px solid var(--border);background:transparent;color:var(--fg);cursor:pointer;transition:all .3s;font-weight:600}
+.donation-amount.selected{border-color:var(--accent);background:rgba(197,165,90,0.15);color:var(--accent)}
+.donation-amount:hover{border-color:var(--accent)}
+
+.counter{font-variant-numeric:tabular-nums}
+.arabic{font-family:'Amiri',serif;direction:rtl;line-height:2}
+.geometric-divider{height:60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'%3E%3Cpath d='M100 0L110 20L130 10L115 30L135 25L100 55L65 25L85 30L70 10L90 20Z' fill='none' stroke='%23C5A55A' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E") repeat-x center}
+
+.quote-section{position:relative;overflow:hidden}
+.quote-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,104,71,0.3),rgba(197,165,90,0.15));z-index:0}
+
+/* Logo Badge Styling - Menyesuaikan background putih agar menyatu */
+.logo-img{width:44px;height:44px;object-fit:contain;border-radius:12px;border:2px solid var(--accent);background:rgba(255,255,255,0.95);padding:3px;box-shadow:0 0 10px rgba(197,165,90,0.3);transition:transform .3s}
+.logo-img:hover{transform:scale(1.08)}
+.logo-img-sm{width:38px;height:38px;object-fit:contain;border-radius:10px;border:2px solid var(--accent);background:rgba(255,255,255,0.95);padding:2px;box-shadow:0 0 8px rgba(197,165,90,0.3)}
+.logo-img-md{width:64px;height:64px;object-fit:contain;border-radius:14px;border:2px solid var(--accent);background:rgba(255,255,255,0.95);padding:4px;box-shadow:0 0 15px rgba(197,165,90,0.4)}
+.logo-img-lg{width:130px;height:130px;object-fit:contain;border-radius:24px;border:3px solid var(--accent);background:rgba(255,255,255,0.95);padding:10px;box-shadow:0 0 35px rgba(197,165,90,0.6)}
+.logo-img-footer{width:52px;height:52px;object-fit:contain;border-radius:14px;border:2px solid var(--accent);background:rgba(255,255,255,0.95);padding:4px;box-shadow:0 0 10px rgba(197,165,90,0.3)}
+
+@media(max-width:768px){
+.hero-title{font-size:2.2rem!important}
+.section-title{font-size:1.8rem!important}
+.logo-img{width:38px;height:38px}
+.logo-img-lg{width:100px;height:100px;padding:8px;border-radius:20px}
+}
+@media(prefers-reduced-motion:reduce){
+.reveal,.reveal-left,.reveal-right{opacity:1;transform:none;transition:none}
+*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="loader-logo">
+        <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo Al Idrus">
+    </div>
+    <div class="loader-text arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:var(--fg);font-size:2rem;cursor:pointer;z-index:9991"><i class="fas fa-times"></i></button>
+    <img id="lightbox-img" src="" alt="Gallery">
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+    <div class="flex flex-col h-full p-8">
+        <div class="flex items-center gap-3 mb-12">
+            <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo" class="logo-img-sm">
+            <div class="leading-tight">
+                <span class="font-display text-xl text-accent">Al Idrus</span>
+                <span class="block text-[10px] text-muted tracking-widest uppercase">Kalikidang, Wonosamodro</span>
+            </div>
+            <button onclick="toggleMobileMenu()" class="ml-auto text-2xl text-cream"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="flex flex-col gap-6 text-lg" id="mobile-nav"></nav>
+        <div class="mt-auto">
+            <div class="flex gap-3 mt-8">
+                <button onclick="setLang('id')" class="lang-btn-m text-sm px-3 py-1 rounded-lg border border-border text-muted hover:text-accent hover:border-accent transition-all" data-lang="id">ID</button>
+                <button onclick="setLang('ar')" class="lang-btn-m text-sm px-3 py-1 rounded-lg border border-border text-muted hover:text-accent hover:border-accent transition-all" data-lang="ar">AR</button>
+                <button onclick="setLang('en')" class="lang-btn-m text-sm px-3 py-1 rounded-lg border border-border text-muted hover:text-accent hover:border-accent transition-all" data-lang="en">EN</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="#hero" class="flex items-center gap-3">
+            <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo Al Idrus" class="logo-img">
+            <div class="leading-tight">
+                <span class="font-display text-lg font-bold text-accent block">Al Idrus</span>
+                <span class="text-[10px] text-muted tracking-wider uppercase">Kalikidang, Wonosamodro</span>
+            </div>
+        </a>
+        <nav class="hidden lg:flex items-center gap-8 text-sm" id="desktop-nav"></nav>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex gap-2">
+                <button onclick="setLang('id')" class="lang-btn text-xs px-2 py-1 rounded-md border border-border text-muted hover:text-accent hover:border-accent transition-all" data-lang="id">ID</button>
+                <button onclick="setLang('ar')" class="lang-btn text-xs px-2 py-1 rounded-md border border-border text-muted hover:text-accent hover:border-accent transition-all" data-lang="ar">AR</button>
+                <button onclick="setLang('en')" class="lang-btn text-xs px-2 py-1 rounded-md border border-border text-muted hover:text-accent hover:border-accent transition-all" data-lang="en">EN</button>
+            </div>
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-xl text-cream"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+    <canvas id="hero-canvas"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark z-[1]"></div>
+    <div class="relative z-[2] max-w-7xl mx-auto px-6 py-32 w-full">
+        <div class="max-w-2xl">
+            <div class="flex items-center gap-4 mb-6">
+                <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo Al Idrus" class="logo-img-lg">
+            </div>
+            <p class="arabic text-accent text-lg mb-4 opacity-80" data-i18n="hero_bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            <h1 class="hero-title font-display text-4xl md:text-7xl font-900 leading-tight mb-6">
+                <span class="text-cream" data-i18n="hero_title1">Pondok Pesantren</span><br>
+                <span class="bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent" data-i18n="hero_title2">Al Idrus</span>
+                <span class="block text-xl md:text-2xl font-light text-muted mt-3" data-i18n="hero_title3">Kalikidang, Wonosamodro, Boyolali</span>
+            </h1>
+            <p class="text-muted text-lg mb-8 leading-relaxed max-w-lg" data-i18n="hero_desc">Menyelaraskan tradisi keilmuan klasik Nahdlatul Ulama dengan kemajuan zaman. Mencetak santri berilmu, berakhlak mulia, dan mencintai Al-Quran di bawah naungan Merbabu.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#registration" class="btn-accent" data-i18n="hero_cta1">Daftar Sekarang</a>
+                <a href="#about" class="btn-outline" data-i18n="hero_cta2">Jelajahi</a>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] animate-bounce"><i class="fas fa-chevron-down text-accent text-xl"></i></div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-24 islamic-pattern relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal"><p class="text-accent font-medium mb-2" data-i18n="about_label">Tentang Kami</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="about_title">Warisan Keilmuan di Bawah Merbabu</h2></div>
+        <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <div class="reveal-left">
+                <p class="text-muted leading-relaxed mb-6" data-i18n="about_p1">Pondok Pesantren Al Idrus Kalikidang berdiri di Dukuh Kalikidang, RT.1, RW.5, Desa Repaking, Kecamatan Wonosamodro, Kabupaten Boyolali, Jawa Tengah. Didirikan oleh almarhum KH. Muhammad Idrus sebagai pusat pendidikan Islam beraswaja (Ahlusunnah wal Jamaah) yang mengakar pada tradisi Nahdlatul Ulama, pesantren ini telah melahirkan generasi ulama, santri, dan masyarakat yang berdedikasi tinggi.</p>
+                <p class="text-muted leading-relaxed mb-6" data-i18n="about_p2">Dengan metode sorogan dan bandongan dalam pengajian kitab kuning, program tahfidz Al-Quran, serta pendidikan formal melalui Madrasah Diniyah, MTs, dan MA, Al Idrus terus berikhtiar menjembatani tradisi salaf dan tantangan zaman. Pesantren ini juga aktif dalam kegiatan sosial kemasyarakatan, mulai dari pengajian rutin hingga bakti lingkungan di wilayah Wonosamodro dan sekitarnya.</p>
+                <p class="text-muted leading-relaxed mb-6" data-i18n="about_p3">Di bawah kepemimpinan pengasuh saat ini, Pesantren Al Idrus terus membangun dan mengembangkan fasilitas demi kenyamanan santri, termasuk asrama baru, perpustakaan, dan laboratorium komputer.</p>
+                <div class="flex gap-4"><a href="#programs" class="btn-primary text-sm" data-i18n="about_cta">Lihat Program</a></div>
+            </div>
+            <div class="reveal-right">
+                <div class="glass p-2 glow-primary relative">
+                    <img src="https://picsum.photos/seed/alidrus-main/600/400.jpg" alt="Pesantren Al Idrus Kalikidang" class="rounded-xl w-full h-80 object-cover">
+                    <div class="absolute bottom-4 left-4 right-4 glass-strong p-3 text-center">
+                        <p class="text-cream font-display font-bold">Pondok Pesantren Al Idrus</p>
+                        <p class="text-muted text-xs">Kalikidang Repaking, Wonosamodro, Boyolali</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="glass p-6 text-center card-3d reveal" style="transition-delay:.1s"><div class="text-4xl font-display font-bold text-accent counter" data-target="1200">0</div><p class="text-muted text-sm mt-2" data-i18n="stat_students">Santri Aktif</p></div>
+            <div class="glass p-6 text-center card-3d reveal" style="transition-delay:.2s"><div class="text-4xl font-display font-bold text-accent counter" data-target="78">0</div><p class="text-muted text-sm mt-2" data-i18n="stat_teachers">Ustadz/Ustadzah</p></div>
+            <div class="glass p-6 text-center card-3d reveal" style="transition-delay:.3s"><div class="text-4xl font-display font-bold text-accent counter" data-target="65">0</div><p class="text-muted text-sm mt-2" data-i18n="stat_years">Tahun Berdiri</p></div>
+            <div class="glass p-6 text-center card-3d reveal" style="transition-delay:.4s"><div class="text-4xl font-display font-bold text-accent counter" data-target="8000">0</div><p class="text-muted text-sm mt-2" data-i18n="stat_alumni">Alumni</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Quote Section -->
+<section class="quote-section py-20 islamic-pattern">
+    <div class="max-w-3xl mx-auto px-6 text-center reveal">
+        <div class="glass-strong p-10 glow-accent">
+            <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo Al Idrus" class="logo-img-md mx-auto mb-6">
+            <p class="arabic text-accent text-2xl md:text-3xl mb-6">طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ</p>
+            <p class="text-cream text-lg italic mb-3">"Menuntut ilmu adalah kewajiban bagi setiap muslim."</p>
+            <p class="text-muted text-sm">— HR. Ibnu Majah</p>
+            <div class="w-16 h-0.5 bg-accent mx-auto mt-6"></div>
+        </div>
+    </div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- Programs Section -->
+<section id="programs" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16 reveal"><p class="text-accent font-medium mb-2" data-i18n="programs_label">Program Unggulan</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="programs_title">Tradisi Salaf, Semangat Khalaf</h2></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="programs-grid"></div></div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- Registration Section -->
+<section id="registration" class="py-24 islamic-pattern relative">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo" class="logo-img-md mx-auto mb-4">
+            <p class="text-accent font-medium mb-2" data-i18n="reg_label">Pendaftaran Santri Baru</p>
+            <h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="reg_title">Bergabunglah Bersama Kami</h2>
+            <p class="text-muted mt-4" data-i18n="reg_subtitle">Pendaftaran Tahun Ajaran 2025/2026 telah dibuka. Segera daftarkan putra-putri Anda!</p>
+        </div>
+        <div class="glass-strong p-8 md:p-12 glow-accent reveal">
+            <form id="registration-form" onsubmit="handleRegistration(event)">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_name">Nama Lengkap Santri</label><input type="text" class="form-input" required data-i18n-placeholder="reg_name_ph" placeholder="Masukkan nama lengkap"></div>
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_parent">Nama Orang Tua/Wali</label><input type="text" class="form-input" required data-i18n-placeholder="reg_parent_ph" placeholder="Nama wali santri"></div>
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_dob">Tanggal Lahir</label><input type="date" class="form-input" required></div>
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_gender">Jenis Kelamin</label><select class="form-input" required><option value="" data-i18n="reg_select">-- Pilih --</option><option value="L" data-i18n="reg_male">Laki-laki</option><option value="P" data-i18n="reg_female">Perempuan</option></select></div>
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_phone">No. Telepon / WhatsApp</label><input type="tel" class="form-input" required placeholder="08xxxxxxxxxx"></div>
+                    <div><label class="block text-sm text-muted mb-2">Email</label><input type="email" class="form-input" required placeholder="email@example.com"></div>
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_program">Program yang Dipilih</label><select class="form-input" required id="reg-program-select"><option value="" data-i18n="reg_select">-- Pilih --</option></select></div>
+                    <div><label class="block text-sm text-muted mb-2" data-i18n="reg_education">Pendidikan Terakhir</label><select class="form-input" required><option value="" data-i18n="reg_select">-- Pilih --</option><option value="sd">SD / MI</option><option value="smp">SMP / MTs</option><option value="sma">SMA / MA</option></select></div>
+                    <div class="md:col-span-2"><label class="block text-sm text-muted mb-2" data-i18n="reg_address">Alamat Lengkap</label><textarea class="form-input" rows="3" required data-i18n-placeholder="reg_address_ph" placeholder="Masukkan alamat lengkap"></textarea></div>
+                </div>
+                <div class="mt-8 text-center"><button type="submit" class="btn-accent text-lg px-12" data-i18n="reg_submit">Kirim Pendaftaran</button></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- Student Portal -->
+<section id="portal" class="py-24 relative">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12 reveal"><p class="text-accent font-medium mb-2" data-i18n="portal_label">Portal Santri</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="portal_title">Akses Portal</h2></div>
+        <div id="portal-login" class="max-w-md mx-auto glass-strong p-8 glow-primary reveal">
+            <div class="text-center mb-8">
+                <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo Al Idrus" class="logo-img-md mx-auto mb-4">
+                <p class="text-muted text-sm" data-i18n="portal_login_desc">Masuk untuk melihat informasi akademik</p>
+            </div>
+            <form onsubmit="handlePortalLogin(event)">
+                <div class="mb-4"><label class="block text-sm text-muted mb-2" data-i18n="portal_nis">NIS (Nomor Induk Santri)</label><input type="text" id="portal-nis" class="form-input" required placeholder="Contoh: 12345"></div>
+                <div class="mb-6"><label class="block text-sm text-muted mb-2" data-i18n="portal_pass">Kata Sandi</label><input type="password" id="portal-pass" class="form-input" required placeholder="********"></div>
+                <button type="submit" class="btn-primary w-full" data-i18n="portal_login_btn">Masuk</button>
+                <p class="text-muted text-xs text-center mt-4" data-i18n="portal_demo">Demo: NIS 12345 / sandi alidrus2024</p>
+            </form>
+        </div>
+        <div id="portal-dashboard" class="hidden">
+            <div class="flex items-center justify-between mb-8"><div><h3 class="font-display text-2xl text-cream" data-i18n="portal_welcome">Selamat Datang</h3><p class="text-accent font-medium">Muhammad Rizki - NIS 12345</p></div><button onclick="portalLogout()" class="btn-outline text-sm" data-i18n="portal_logout">Keluar</button></div>
+            <div class="flex flex-wrap gap-3 mb-8"><button class="tab-btn active" onclick="switchPortalTab('profile')" data-tab="profile" data-i18n="portal_tab_profile">Profil</button><button class="tab-btn" onclick="switchPortalTab('grades')" data-tab="grades" data-i18n="portal_tab_grades">Nilai</button><button class="tab-btn" onclick="switchPortalTab('schedule')" data-tab="schedule" data-i18n="portal_tab_schedule">Jadwal</button><button class="tab-btn" onclick="switchPortalTab('payments')" data-tab="payments" data-i18n="portal_tab_payments">Pembayaran</button></div>
+            <div id="portal-content" class="glass-strong p-6 md:p-8"></div>
+        </div>
+    </div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- News Section -->
+<section id="news" class="py-24 islamic-pattern relative">
+    <div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16 reveal"><p class="text-accent font-medium mb-2" data-i18n="news_label">Berita & Kegiatan</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="news_title">Informasi Terkini</h2></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="news-grid"></div></div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- Donation Section -->
+<section id="donation" class="py-24 relative">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12 reveal"><p class="text-accent font-medium mb-2" data-i18n="donate_label">Donasi</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="donate_title">Berpartisipasi dalam Kebaikan</h2><p class="text-muted mt-4 max-w-2xl mx-auto" data-i18n="donate_desc">Setiap donasi Anda menjadi lampu bagi santri Kalikidang yang menuntut ilmu. Investasi akhirat yang tidak akan pernah rugi.</p></div>
+        <div class="glass-strong p-8 md:p-12 glow-accent reveal">
+            <div class="mb-8"><label class="block text-sm text-muted mb-4" data-i18n="donate_amount_label">Pilih Nominal Donasi</label><div class="grid grid-cols-2 md:grid-cols-5 gap-3"><button class="donation-amount" onclick="selectDonation(this,100000)">100rb</button><button class="donation-amount" onclick="selectDonation(this,250000)">250rb</button><button class="donation-amount selected" onclick="selectDonation(this,500000)">500rb</button><button class="donation-amount" onclick="selectDonation(this,1000000)">1jt</button><button class="donation-amount" onclick="selectDonation(this,5000000)">5jt</button></div><div class="mt-4"><input type="number" class="form-input" id="custom-donation" placeholder="Nominal lain (Rp)" min="10000" oninput="clearDonationSelection()"></div></div>
+            <form onsubmit="handleDonation(event)"><div class="grid md:grid-cols-2 gap-6 mb-6"><div><label class="block text-sm text-muted mb-2" data-i18n="donate_name">Nama Donatur</label><input type="text" class="form-input" id="donate-name" required placeholder="Nama Anda"></div><div><label class="block text-sm text-muted mb-2">Email</label><input type="email" class="form-input" id="donate-email" required placeholder="email@example.com"></div><div><label class="block text-sm text-muted mb-2" data-i18n="donate_phone">No. Telepon</label><input type="tel" class="form-input" id="donate-phone" required placeholder="08xxxxxxxxxx"></div><div><label class="block text-sm text-muted mb-2" data-i18n="donate_purpose">Tujuan Donasi</label><select class="form-input" id="donate-purpose" required><option value="pendidikan" data-i18n="donate_edu">Pendidikan Santri</option><option value="pembangunan" data-i18n="donate_build">Pembangunan Asrama</option><option value="beasiswa" data-i18n="donate_scholar">Beasiswa Santri Dhuafa</option><option value="masjid" data-i18n="donate_mosque">Renovasi Masjid</option></select></div></div><div class="text-center"><button type="submit" class="btn-accent text-lg px-12" data-i18n="donate_submit">Donasi Sekarang</button></div></form>
+        </div>
+    </div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- Gallery Section -->
+<section id="gallery" class="py-24 islamic-pattern relative">
+    <div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16 reveal"><p class="text-accent font-medium mb-2" data-i18n="gallery_label">Galeri</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="gallery_title">Suasana Pesantren Al Idrus</h2></div><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid"></div></div>
+</section>
+
+<div class="geometric-divider"></div>
+
+<!-- Contact Section -->
+<section id="contact" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal"><p class="text-accent font-medium mb-2" data-i18n="contact_label">Hubungi Kami</p><h2 class="section-title font-display text-4xl md:text-5xl font-bold text-cream" data-i18n="contact_title">Ada Pertanyaan?</h2></div>
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div class="reveal-left"><div class="glass-strong p-8"><form onsubmit="handleContact(event)"><div class="grid md:grid-cols-2 gap-6 mb-6"><div><label class="block text-sm text-muted mb-2" data-i18n="contact_name">Nama</label><input type="text" class="form-input" required placeholder="Nama Anda"></div><div><label class="block text-sm text-muted mb-2">Email</label><input type="email" class="form-input" required placeholder="email@example.com"></div></div><div class="mb-6"><label class="block text-sm text-muted mb-2" data-i18n="contact_subject">Subjek</label><input type="text" class="form-input" required placeholder="Perihal pesan"></div><div class="mb-6"><label class="block text-sm text-muted mb-2" data-i18n="contact_message">Pesan</label><textarea class="form-input" rows="5" required placeholder="Tulis pesan Anda"></textarea></div><button type="submit" class="btn-primary" data-i18n="contact_send">Kirim Pesan</button></form></div></div>
+            <div class="reveal-right"><div class="space-y-6">
+                <div class="glass p-6 flex items-start gap-4 card-3d"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shrink-0"><i class="fas fa-map-marker-alt text-cream"></i></div><div><h4 class="text-cream font-semibold mb-1" data-i18n="contact_address_label">Alamat</h4><p class="text-muted text-sm">Kalikidang, RT.1, RW.5, Desa Repaking, Kec. Wonosamodro, Kab. Boyolali, Jawa Tengah 57311</p></div></div>
+                <div class="glass p-6 flex items-start gap-4 card-3d"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shrink-0"><i class="fas fa-phone-alt text-cream"></i></div><div><h4 class="text-cream font-semibold mb-1" data-i18n="contact_phone_label">Telepon</h4><p class="text-muted text-sm">(0276) 321-xxx</p><p class="text-muted text-sm">+62 812-xxxx-xxxx (WhatsApp)</p></div></div>
+                <div class="glass p-6 flex items-start gap-4 card-3d"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shrink-0"><i class="fas fa-envelope text-cream"></i></div><div><h4 class="text-cream font-semibold mb-1">Email</h4><p class="text-muted text-sm">info@alidrus-kalikidang.sch.id</p></div></div>
+                <div class="glass p-6 flex items-start gap-4 card-3d"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent-light flex items-center justify-center shrink-0"><i class="fas fa-clock text-dark"></i></div><div><h4 class="text-cream font-semibold mb-1" data-i18n="contact_hours_label">Jam Operasional</h4><p class="text-muted text-sm">Senin - Sabtu: 08.00 - 16.00 WIB</p></div></div>
+                <div class="glass p-6 flex items-start gap-4 card-3d"><div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shrink-0"><i class="fas fa-mountain text-dark"></i></div><div><h4 class="text-cream font-semibold mb-1" data-i18n="contact_location_label">Lokasi</h4><p class="text-muted text-sm" data-i18n="contact_location_desc">Berada di kaki Gunung Merbabu, Wonosamodro, Boyolali — mudah diakses dari Solo dan Yogyakarta.</p></div></div>
+            </div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-16 border-t border-border relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://z-cdn-media.chatglm.cn/files/6fcbf627-d8d4-4a89-aef6-651ab4f02fdc.jpg?auth_key=1880730034-cc5f25fe54c344d09047be170ad63ddc-0-128027ef50731f5cef4277e5f9d285d0" alt="Logo Al Idrus" class="logo-img-footer">
+                    <div class="leading-tight"><span class="font-display text-lg font-bold text-accent block">Al Idrus</span><span class="text-[10px] text-muted tracking-wider uppercase">Kalikidang, Wonosamodro</span></div>
+                </div>
+                <p class="text-muted text-sm leading-relaxed" data-i18n="footer_desc">Pondok Pesantren Al Idrus Kalikidang — Mencetak generasi berilmu, berakhlak mulia, beraswaja di bawah naungan Merbabu.</p>
+                <div class="flex gap-3 mt-4"><a href="#" class="w-9 h-9 rounded-lg bg-primary/30 flex items-center justify-center text-accent hover:bg-primary transition-all"><i class="fab fa-facebook-f"></i></a><a href="#" class="w-9 h-9 rounded-lg bg-primary/30 flex items-center justify-center text-accent hover:bg-primary transition-all"><i class="fab fa-instagram"></i></a><a href="#" class="w-9 h-9 rounded-lg bg-primary/30 flex items-center justify-center text-accent hover:bg-primary transition-all"><i class="fab fa-youtube"></i></a><a href="#" class="w-9 h-9 rounded-lg bg-primary/30 flex items-center justify-center text-accent hover:bg-primary transition-all"><i class="fab fa-whatsapp"></i></a></div>
+            </div>
+            <div><h4 class="text-cream font-semibold mb-4" data-i18n="footer_links">Tautan Cepat</h4><ul class="space-y-2 text-muted text-sm"><li><a href="#about" class="hover:text-accent transition-colors" data-i18n="nav_about">Tentang</a></li><li><a href="#programs" class="hover:text-accent transition-colors" data-i18n="nav_programs">Program</a></li><li><a href="#registration" class="hover:text-accent transition-colors" data-i18n="nav_registration">Pendaftaran</a></li><li><a href="#donation" class="hover:text-accent transition-colors" data-i18n="nav_donation">Donasi</a></li></ul></div>
+            <div><h4 class="text-cream font-semibold mb-4" data-i18n="footer_programs">Program</h4><ul class="space-y-2 text-muted text-sm"><li><a href="#" class="hover:text-accent transition-colors" data-i18n="prog_tahfidz">Tahfidz Al-Quran</a></li><li><a href="#" class="hover:text-accent transition-colors" data-i18n="prog_kitab">Kitab Kuning</a></li><li><a href="#" class="hover:text-accent transition-colors" data-i18n="prog_madrasah">Madrasah Formal</a></li><li><a href="#" class="hover:text-accent transition-colors" data-i18n="prog_hadroh">Hadroh & Seni Islam</a></li></ul></div>
+            <div><h4 class="text-cream font-semibold mb-4" data-i18n="footer_contact">Kontak</h4><ul class="space-y-2 text-muted text-sm"><li><i class="fas fa-map-marker-alt text-accent mr-2"></i>Kalikidang, RT.1, RW.5, Repaking, Wonosamodro</li><li><i class="fas fa-phone-alt text-accent mr-2"></i>(0276) 321-xxx</li><li><i class="fas fa-envelope text-accent mr-2"></i>info@alidrus-kalikidang.sch.id</li></ul></div>
+        </div>
+        <div class="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-muted text-sm">&copy; 2024 Pondok Pesantren Al Idrus Kalikidang. Hak cipta dilindungi.</p><p class="text-muted text-xs arabic">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p></div>
+    </div>
+</footer>
+
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';import{OrbitControls}from'three/addons/controls/OrbitControls.js';
+const canvas=document.getElementById('hero-canvas');const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x080F0B,0.025);const camera=new THREE.PerspectiveCamera(50,canvas.clientWidth/canvas.clientHeight,0.1,200);camera.position.set(18,12,22);const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setSize(canvas.clientWidth,canvas.clientHeight);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=0.05;controls.autoRotate=true;controls.autoRotateSpeed=0.5;controls.maxPolarAngle=Math.PI/2.2;controls.minDistance=12;controls.maxDistance=40;controls.target.set(0,3,0);
+scene.add(new THREE.AmbientLight(0x1a3a2a,0.6));const ml=new THREE.DirectionalLight(0xc5d5e5,1.2);ml.position.set(20,30,10);scene.add(ml);const wl=new THREE.PointLight(0xC5A55A,2,30);wl.position.set(0,8,5);scene.add(wl);scene.add(new THREE.PointLight(0x14A06B,1.5,25).translateX(-5).translateY(5).translateZ(-5));scene.add(new THREE.PointLight(0xE8E0D0,1,20).translateY(3).translateZ(10));
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(100,100),new THREE.MeshStandardMaterial({color:0x0a3d28,roughness:0.9}));ground.rotation.x=-Math.PI/2;scene.add(ground);const water=new THREE.Mesh(new THREE.PlaneGeometry(30,15),new THREE.MeshStandardMaterial({color:0x0a4a5a,roughness:0.1,metalness:0.8,transparent:true,opacity:0.7}));water.rotation.x=-Math.PI/2;water.position.set(0,0.05,12);scene.add(water);const mMat=new THREE.MeshStandardMaterial({color:0x0d2a1d,roughness:0.9});const m1=new THREE.Mesh(new THREE.ConeGeometry(20,18,6),mMat);m1.position.set(-25,5,-35);scene.add(m1);const m2=new THREE.Mesh(new THREE.ConeGeometry(15,14,5),mMat);m2.position.set(-10,3,-38);scene.add(m2);
+const mosque=new THREE.Group();const bMat=new THREE.MeshStandardMaterial({color:0xE8DCC8,roughness:0.7});const dMat=new THREE.MeshStandardMaterial({color:0x0A6847,roughness:0.3,metalness:0.5});const cMat=new THREE.MeshStandardMaterial({color:0xC5A55A,roughness:0.2,metalness:0.8,emissive:0xC5A55A,emissiveIntensity:0.3});
+const p1=new THREE.Mesh(new THREE.BoxGeometry(14,1,10),bMat);p1.position.y=0.5;mosque.add(p1);for(let i=0;i<3;i++){const s=new THREE.Mesh(new THREE.BoxGeometry(6+i*.5,.3,1.2),new THREE.MeshStandardMaterial({color:0xD4C8B0,roughness:0.7}));s.position.set(0,.15+i*.3,5.5+i*.6);mosque.add(s);}const wMat=new THREE.MeshStandardMaterial({color:0xF0E6D4,roughness:0.6});const mb=new THREE.Mesh(new THREE.BoxGeometry(10,5,7),wMat);mb.position.y=3.5;mosque.add(mb);const fw=new THREE.Mesh(new THREE.BoxGeometry(10,6,.5),wMat);fw.position.set(0,4,3.75);mosque.add(fw);const af=new THREE.Mesh(new THREE.BoxGeometry(3,5,.6),new THREE.MeshStandardMaterial({color:0x1a5a3a,roughness:0.4,metalness:0.2}));af.position.set(0,3.5,4);mosque.add(af);const ao=new THREE.Mesh(new THREE.BoxGeometry(2.2,3.5,.7),new THREE.MeshStandardMaterial({color:0x0a2a1a,roughness:0.9}));ao.position.set(0,2.75,4);mosque.add(ao);const dm=new THREE.Mesh(new THREE.SphereGeometry(4,32,16,0,Math.PI*2,0,Math.PI/2),dMat);dm.position.y=6;mosque.add(dm);const dr=new THREE.Mesh(new THREE.TorusGeometry(4,.2,8,32),new THREE.MeshStandardMaterial({color:0xC5A55A,roughness:0.3,metalness:0.7}));dr.rotation.x=Math.PI/2;dr.position.y=6;mosque.add(dr);const cg=new THREE.Group();cg.add(new THREE.Mesh(new THREE.SphereGeometry(.5,16,16),cMat));const cc=new THREE.Mesh(new THREE.SphereGeometry(.4,16,16),new THREE.MeshStandardMaterial({color:0x0A6847}));cc.position.set(.2,.1,0);cg.add(cc);cg.position.y=10.2;mosque.add(cg);const sp=new THREE.Mesh(new THREE.ConeGeometry(.15,1.5,8),cMat);sp.position.y=9.2;mosque.add(sp);
+function mkMin(x,z){const g=new THREE.Group();g.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(.5,.6,1,16),bMat),{position:new THREE.Vector3(0,.5,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(.4,.5,8,16),new THREE.MeshStandardMaterial({color:0xE8DCC8,roughness:.6})),{position:new THREE.Vector3(0,5,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(.8,.8,.4,16),new THREE.MeshStandardMaterial({color:0xC5A55A,roughness:.3,metalness:.6})),{position:new THREE.Vector3(0,8.5,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(.3,.4,2,16),new THREE.MeshStandardMaterial({color:0xE8DCC8,roughness:.6})),{position:new THREE.Vector3(0,9.5,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.ConeGeometry(.5,2,16),dMat),{position:new THREE.Vector3(0,11,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.SphereGeometry(.2,8,8),cMat),{position:new THREE.Vector3(0,12.2,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.ConeGeometry(.06,.5,8),cMat),{position:new THREE.Vector3(0,11.8,0)}));g.position.set(x,0,z);return g;}
+mosque.add(mkMin(-6,4));mosque.add(mkMin(6,4));mosque.add(mkMin(-6,-4));mosque.add(mkMin(6,-4));
+const winMat=new THREE.MeshStandardMaterial({color:0xC5A55A,emissive:0xC5A55A,emissiveIntensity:.5,roughness:.3});[[-3,4,4.1],[0,4,4.1],[3,4,4.1],[-3,4,-4.1],[0,4,-4.1],[3,4,-4.1],[-5.1,4,0],[-5.1,4,2],[-5.1,4,-2],[5.1,4,0],[5.1,4,2],[5.1,4,-2]].forEach(([x,y,z])=>{const w=new THREE.Mesh(new THREE.BoxGeometry(.8,1.5,.1),winMat);w.position.set(x,y,z);if(Math.abs(x)>5)w.rotation.y=Math.PI/2;mosque.add(w);});scene.add(mosque);
+function mkTree(x,z){const g=new THREE.Group();g.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(.15,.2,2,8),new THREE.MeshStandardMaterial({color:0x5a3a20})),{position:new THREE.Vector3(0,1,0)}));g.add(Object.assign(new THREE.Mesh(new THREE.SphereGeometry(1.2,8,8),new THREE.MeshStandardMaterial({color:0x0d5a35,roughness:.8})),{position:new THREE.Vector3(0,2.8,0)}));g.position.set(x,0,z);return g;}[[-12,5],[-10,-8],[12,6],[10,-6],[-15,-3],[15,2],[-8,10],[8,10],[-14,8],[14,-8],[-9,-12],[11,-11]].forEach(([x,z])=>scene.add(mkTree(x,z)));
+const sC=1500;const sG=new THREE.BufferGeometry();const sP=new Float32Array(sC*3);for(let i=0;i<sC;i++){sP[i*3]=(Math.random()-.5)*200;sP[i*3+1]=Math.random()*80+10;sP[i*3+2]=(Math.random()-.5)*200;}sG.setAttribute('position',new THREE.BufferAttribute(sP,3));scene.add(new THREE.Points(sG,new THREE.PointsMaterial({color:0xffffff,size:.15,transparent:true,opacity:.8})));
+const pC=60;const pG=new THREE.BufferGeometry();const pP=new Float32Array(pC*3);const pS=[];for(let i=0;i<pC;i++){pP[i*3]=(Math.random()-.5)*40;pP[i*3+1]=Math.random()*15+2;pP[i*3+2]=(Math.random()-.5)*40;pS.push({x:(Math.random()-.5)*.01,y:(Math.random()-.5)*.005,z:(Math.random()-.5)*.01});}pG.setAttribute('position',new THREE.BufferAttribute(pP,3));const particles=new THREE.Points(pG,new THREE.PointsMaterial({color:0xC5A55A,size:.12,transparent:true,opacity:.6}));scene.add(particles);
+const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();const pp=particles.geometry.attributes.position.array;for(let i=0;i<pC;i++){pp[i*3]+=pS[i].x;pp[i*3+1]+=Math.sin(t+i)*.003;pp[i*3+2]+=pS[i].z;if(Math.abs(pp[i*3])>25)pS[i].x*=-1;if(Math.abs(pp[i*3+2])>25)pS[i].z*=-1;}particles.geometry.attributes.position.needsUpdate=true;water.material.emissive=new THREE.Color(0x0a3a4a);water.material.emissiveIntensity=.3+Math.sin(t*2)*.1;cMat.emissiveIntensity=.3+Math.sin(t*1.5)*.15;winMat.emissiveIntensity=.4+Math.sin(t*.8)*.15;controls.update();renderer.render(scene,camera);}animate();
+window.addEventListener('resize',()=>{camera.aspect=canvas.clientWidth/canvas.clientHeight;camera.updateProjectionMatrix();renderer.setSize(canvas.clientWidth,canvas.clientHeight);});
+</script>
+
+<script>
+const T={id:{nav_home:'Beranda',nav_about:'Tentang',nav_programs:'Program',nav_registration:'Pendaftaran',nav_portal:'Portal',nav_news:'Berita',nav_donation:'Donasi',nav_gallery:'Galeri',nav_contact:'Kontak',hero_bismillah:'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',hero_title1:'Pondok Pesantren',hero_title2:'Al Idrus',hero_title3:'Kalikidang, Wonosamodro, Boyolali',hero_desc:'Menyelaraskan tradisi keilmuan klasik Nahdlatul Ulama dengan kemajuan zaman. Mencetak santri berilmu, berakhlak mulia, dan mencintai Al-Quran di bawah naungan Merbabu.',hero_cta1:'Daftar Sekarang',hero_cta2:'Jelajahi',about_label:'Tentang Kami',about_title:'Warisan Keilmuan di Bawah Merbabu',about_p1:'Pondok Pesantren Al Idrus Kalikidang berdiri di Dukuh Kalikidang, RT.1, RW.5, Desa Repaking, Kecamatan Wonosamodro, Kabupaten Boyolali, Jawa Tengah. Didirikan oleh almarhum KH. Muhammad Idrus sebagai pusat pendidikan Islam beraswaja (Ahlusunnah wal Jamaah) yang mengakar pada tradisi Nahdlatul Ulama, pesantren ini telah melahirkan generasi ulama, santri, dan masyarakat yang berdedikasi tinggi.',about_p2:'Dengan metode sorogan dan bandongan dalam pengajian kitab kuning, program tahfidz Al-Quran, serta pendidikan formal melalui Madrasah Diniyah, MTs, dan MA, Al Idrus terus berikhtiar menjembatani tradisi salaf dan tantangan zaman. Pesantren ini juga aktif dalam kegiatan sosial kemasyarakatan, mulai dari pengajian rutin hingga bakti lingkungan di wilayah Wonosamodro dan sekitarnya.',about_p3:'Di bawah kepemimpinan pengasuh saat ini, Pesantren Al Idrus terus membangun dan mengembangkan fasilitas demi kenyamanan santri, termasuk asrama baru, perpustakaan, dan laboratorium komputer.',about_cta:'Lihat Program',stat_students:'Santri Aktif',stat_teachers:'Ustadz/Ustadzah',stat_years:'Tahun Berdiri',stat_alumni:'Alumni',programs_label:'Program Unggulan',programs_title:'Tradisi Salaf, Semangat Khalaf',prog_tahfidz:'Tahfidz Al-Quran',prog_tahfidz_desc:'Program menghafal Al-Quran 30 juz dengan metode talaqqi dan muraja\'ah intensif.',prog_kitab:'Kitab Kuning & Sorogan',prog_kitab_desc:'Pengajian kitab kuning klasik melalui metode sorogan dan bandongan khas pesantren NU.',prog_madrasah:'Madrasah Formal',prog_madrasah_desc:'Pendidikan formal bernaung di bawah Kemenag: Madrasah Diniyah, MTs, dan MA.',prog_hadroh:'Hadroh & Seni Islam',prog_hadroh_desc:'Pembinaan seni islami berupa hadroh, sholawat, qiro\'ah, dan kaligrafi.',prog_tahfidz_sains:'Kelas Unggulan Tahfidz-Sains',prog_tahfidz_sains_desc:'Program perpaduan hafalan Al-Quran dengan pendalaman sains dan matematika.',prog_kemandirian:'Life Skill & Kemandirian',prog_kemandirian_desc:'Pelatihan keterampilan hidup: pertanian, peternakan, kewirausahaan syariah.',reg_label:'Pendaftaran Santri Baru',reg_title:'Bergabunglah Bersama Kami',reg_subtitle:'Pendaftaran Tahun Ajaran 2025/2026 telah dibuka!',reg_name:'Nama Lengkap Santri',reg_name_ph:'Masukkan nama lengkap',reg_parent:'Nama Orang Tua/Wali',reg_parent_ph:'Nama wali santri',reg_dob:'Tanggal Lahir',reg_gender:'Jenis Kelamin',reg_select:'-- Pilih --',reg_male:'Laki-laki',reg_female:'Perempuan',reg_phone:'No. Telepon / WhatsApp',reg_program:'Program yang Dipilih',reg_education:'Pendidikan Terakhir',reg_address:'Alamat Lengkap',reg_address_ph:'Masukkan alamat lengkap',reg_submit:'Kirim Pendaftaran',portal_label:'Portal Santri',portal_title:'Akses Portal',portal_login_desc:'Masuk untuk melihat informasi akademik',portal_nis:'NIS (Nomor Induk Santri)',portal_pass:'Kata Sandi',portal_login_btn:'Masuk',portal_demo:'Demo: NIS 12345 / sandi alidrus2024',portal_welcome:'Selamat Datang',portal_logout:'Keluar',portal_tab_profile:'Profil',portal_tab_grades:'Nilai',portal_tab_schedule:'Jadwal',portal_tab_payments:'Pembayaran',news_label:'Berita & Kegiatan',news_title:'Informasi Terkini',news1_title:'Khataman Al-Quran 30 Juz oleh 45 Santri',news1_desc:'Alhamdulillah, 45 santri program tahfidz berhasil menyelesaikan khataman 30 juz Al-Quran.',news2_title:'Pesantren Al Idrus Raih Juara MTQ Kabupaten Boyolali',news2_desc:'Tim qiro\'ah dan kaligrafi berhasil meraih 3 piagam penghargaan dalam MTQ Boyolali 2024.',news3_title:'Pembangunan Asrama Baru 2 Lantai Dimulai',news3_desc:'Pembangunan asrama santri putri berkapasitas 200 orang resmi dimulai.',news4_title:'Pengajian Akbar Maulid Nabi Muhammad SAW',news4_desc:'Menghadirkan KH. Muhammad Muhyiddin dari Pesantren Lirboyo Kediri dengan jamaah lebih dari 3000 orang.',news5_title:'Kerja Sama dengan UNIBOYOLALI',news5_desc:'MoU ditandatangani untuk program beasiswa santri berprestasi.',news6_title:'Bakti Sosial dan Santunan Anak Yatim',news6_desc:'Santunan 150 anak yatim dan pembagian sembako di Desa Repaking dan sekitarnya.',donate_label:'Donasi',donate_title:'Berpartisipasi dalam Kebaikan',donate_desc:'Setiap donasi Anda menjadi lampu bagi santri Kalikidang yang menuntut ilmu.',donate_amount_label:'Pilih Nominal Donasi',donate_name:'Nama Donatur',donate_phone:'No. Telepon',donate_purpose:'Tujuan Donasi',donate_edu:'Pendidikan Santri',donate_build:'Pembangunan Asrama',donate_scholar:'Beasiswa Santri Dhuafa',donate_mosque:'Renovasi Masjid',donate_submit:'Donasi Sekarang',gallery_label:'Galeri',gallery_title:'Suasana Pesantren Al Idrus',contact_label:'Hubungi Kami',contact_title:'Ada Pertanyaan?',contact_name:'Nama',contact_subject:'Subjek',contact_subject_ph:'Perihal pesan',contact_message:'Pesan',contact_message_ph:'Tulis pesan Anda',contact_send:'Kirim Pesan',contact_address_label:'Alamat',contact_phone_label:'Telepon',contact_hours_label:'Jam Operasional',contact_location_label:'Lokasi',contact_location_desc:'Berada di kaki Gunung Merbabu, Wonosamodro, Boyolali — mudah diakses dari Solo dan Yogyakarta.',footer_desc:'Pondok Pesantren Al Idrus Kalikidang — Mencetak generasi berilmu, berakhlak mulia, beraswaja di bawah naungan Merbabu.',footer_links:'Tautan Cepat',footer_programs:'Program',footer_contact:'Kontak',toast_reg_success:'Pendaftaran berhasil dikirim!',toast_login_success:'Berhasil masuk ke portal santri.',toast_login_fail:'NIS atau kata sandi salah.',toast_donate_success:'Jazakumullahu khairan atas donasi Anda!',toast_contact_success:'Pesan berhasil dikirim!',toast_donate_min:'Minimal donasi Rp10.000'},
+ar:{nav_home:'الرئيسية',nav_about:'عن المعهد',nav_programs:'البرامج',nav_registration:'التسجيل',nav_portal:'البوابة',nav_news:'الأخبار',nav_donation:'التبرع',nav_gallery:'المعرض',nav_contact:'اتصل بنا',hero_bismillah:'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',hero_title1:'معهد الإسلامي',hero_title2:'الإدروس',hero_title3:'كاليكيدانغ، وونوسامودرو، بويولالي',hero_desc:'المواءمة بين التراث العلمي النهضلوي وتحديات العصر.',hero_cta1:'سجل الآن',hero_cta2:'استكشف',about_label:'عن المعهد',about_title:'تراث علمي تحت ظلال ميربابو',about_p1:'تأسس معهد الإدروس في حي كاليكيدانغ، RT.1، RW.5، قرية ريباكينغ، منطقة وونوسامودرو، مقاطعة بويولالي، جاوة الوسطى.',about_p2:'بمنهجية السوروغان والباندوغان وبرنامج تحفيظ القرآن والتعليم الرسمي.',about_p3:'يواصل المعهد بناء وتطوير المرافق.',about_cta:'عرض البرامج',stat_students:'طالب نشط',stat_teachers:'معلم/ة',stat_years:'سنة تأسيس',stat_alumni:'خريج',programs_label:'البرامج المتميزة',programs_title:'تراث سلفي، روح خلفية',prog_tahfidz:'تحفيظ القرآن',prog_tahfidz_desc:'حفظ القرآن 30 جزءًا بمنهج التلقي والمراجعة.',prog_kitab:'الكتب الصفراء',prog_kitab_desc:'دراسة الكتب الصفراء بمنهج السوروغان والباندوغان.',prog_madrasah:'المدارس الرسمية',prog_madrasah_desc:'التعليم الرسمي تحت وزارة الشؤون الدينية.',prog_hadroh:'الحدرة والفنون',prog_hadroh_desc:'تطوير الفنون الإسلامية.',prog_tahfidz_sains:'تحفيظ-علوم',prog_tahfidz_sains_desc:'برنامج يجمع بين حفظ القرآن وتعمق العلوم.',prog_kemandirian:'مهارات الحياة',prog_kemandirian_desc:'تدريب مهارات الحياة والاستقلالية.',reg_label:'تسجيل طالب جديد',reg_title:'انضم إلينا',reg_subtitle:'فتح التسجيل للعام 2025/2026!',reg_name:'اسم الطالب',reg_name_ph:'الاسم الكامل',reg_parent:'ولي الأمر',reg_parent_ph:'اسم ولي الأمر',reg_dob:'تاريخ الميلاد',reg_gender:'الجنس',reg_select:'-- اختر --',reg_male:'ذكر',reg_female:'أنثى',reg_phone:'الهاتف',reg_program:'البرنامج',reg_education:'المرحلة السابقة',reg_address:'العنوان',reg_address_ph:'العنوان الكامل',reg_submit:'إرسال',portal_label:'بوابة الطالب',portal_title:'الدخول',portal_login_desc:'ادخل للمعلومات الأكاديمية',portal_nis:'رقم الطالب',portal_pass:'كلمة المرور',portal_login_btn:'دخول',portal_demo:'تجريبي: 12345 / alidrus2024',portal_welcome:'أهلاً',portal_logout:'خروج',portal_tab_profile:'الملف',portal_tab_grades:'الدرجات',portal_tab_schedule:'الجدول',portal_tab_payments:'المدفوعات',news_label:'الأخبار',news_title:'آخر المستجدات',news1_title:'ختم القرآن 30 جزءًا',news1_desc:'45 طالبًا أكملوا ختم القرآن.',news2_title:'الفوز بمسابقة القرآن',news2_desc:'الفريق فاز بـ 3 جوائز.',news3_title:'بناء سكن جديد',news3_desc:'بدأ بناء سكن طالبات من طابقين.',news4_title:'محاضرة المولد النبوي',news4_desc:'محاضرة كبرى بحضور أكثر من 3000 شخص.',news5_title:'تعاون مع جامعة بويولالي',news5_desc:'توقيع اتفاقية للمنح الدراسية.',news6_title:'خدمة اجتماعية',news6_desc:'كفالة 150 يتيمًا في قرية ريباكينغ.',donate_label:'التبرع',donate_title:'شارك في الخير',donate_desc:'كل تبرعك نور للطلاب.',donate_amount_label:'مبلغ التبرع',donate_name:'المتبرع',donate_phone:'الهاتف',donate_purpose:'الغرض',donate_edu:'التعليم',donate_build:'البناء',donate_scholar:'المنح',donate_mosque:'المسجد',donate_submit:'تبرع الآن',gallery_label:'المعرض',gallery_title:'أجواء المعهد',contact_label:'اتصل بنا',contact_title:'سؤال؟',contact_name:'الاسم',contact_subject:'الموضوع',contact_subject_ph:'موضوع الرسالة',contact_message:'الرسالة',contact_message_ph:'اكتب رسالتك',contact_send:'إرسال',contact_address_label:'العنوان',contact_phone_label:'الهاتف',contact_hours_label:'ساعات العمل',contact_location_label:'الموقع',contact_location_desc:'سفح ميربابو، وونوسامودرو، بويولالي.',footer_desc:'معهد الإدروس كاليكيدانغ — صياغة جيل عالم ذي أخلاق.',footer_links:'روابط',footer_programs:'البرامج',footer_contact:'اتصل بنا',toast_reg_success:'تم الإرسال بنجاح!',toast_login_success:'تم الدخول بنجاح.',toast_login_fail:'بيانات خاطئة.',toast_donate_success:'جزاكم الله خيرًا!',toast_contact_success:'تم إرسال الرسالة!',toast_donate_min:'الحد الأدنى 10000'},
+en:{nav_home:'Home',nav_about:'About',nav_programs:'Programs',nav_registration:'Registration',nav_portal:'Portal',nav_news:'News',nav_donation:'Donation',nav_gallery:'Gallery',nav_contact:'Contact',hero_bismillah:'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',hero_title1:'Islamic Boarding School',hero_title2:'Al Idrus',hero_title3:'Kalikidang, Wonosamodro, Boyolali',hero_desc:'Harmonizing classical Nahdlatul Ulama scholarly tradition with modern progress.',hero_cta1:'Register Now',hero_cta2:'Explore',about_label:'About Us',about_title:'A Legacy of Knowledge Beneath Merbabu',about_p1:'Pondok Pesantren Al Idrus stands in Kalikidang Hamlet, RT.1, RW.5, Repaking Village, Wonosamodro District, Boyolali Regency, Central Java.',about_p2:'With sorogan and bandongan methods, Quran memorization, and formal education through Madrasah Diniyah, MTs, and MA.',about_p3:'The pesantren continues to build and develop facilities.',about_cta:'View Programs',stat_students:'Active Students',stat_teachers:'Teachers',stat_years:'Years Established',stat_alumni:'Alumni',programs_label:'Featured Programs',programs_title:'Salafi Tradition, Khalafi Spirit',prog_tahfidz:'Quran Memorization',prog_tahfidz_desc:'30-juz memorization with intensive talaqqi and muraja\'ah methods.',prog_kitab:'Kitab Kuning & Sorogan',prog_kitab_desc:'Classical text study through traditional methods.',prog_madrasah:'Formal Madrasah',prog_madrasah_desc:'Formal education under the Ministry of Religious Affairs.',prog_hadroh:'Hadroh & Islamic Arts',prog_hadroh_desc:'Islamic arts development.',prog_tahfidz_sains:'Tahfidz-Science Honors',prog_tahfidz_sains_desc:'Combining Quran memorization with advanced science.',prog_kemandirian:'Life Skills & Independence',prog_kemandirian_desc:'Practical training in agriculture and entrepreneurship.',reg_label:'New Student Registration',reg_title:'Join Our Community',reg_subtitle:'Registration for Academic Year 2025/2026 is now open!',reg_name:'Full Student Name',reg_name_ph:'Enter full name',reg_parent:'Parent/Guardian',reg_parent_ph:'Guardian name',reg_dob:'Date of Birth',reg_gender:'Gender',reg_select:'-- Select --',reg_male:'Male',reg_female:'Female',reg_phone:'Phone / WhatsApp',reg_program:'Selected Program',reg_education:'Last Education',reg_address:'Full Address',reg_address_ph:'Enter full address',reg_submit:'Submit Registration',portal_label:'Student Portal',portal_title:'Portal Access',portal_login_desc:'Sign in to view academic information',portal_nis:'Student ID',portal_pass:'Password',portal_login_btn:'Sign In',portal_demo:'Demo: ID 12345 / pass alidrus2024',portal_welcome:'Welcome',portal_logout:'Sign Out',portal_tab_profile:'Profile',portal_tab_grades:'Grades',portal_tab_schedule:'Schedule',portal_tab_payments:'Payments',news_label:'News & Events',news_title:'Latest Updates',news1_title:'30-Juz Quran Graduation',news1_desc:'45 students completed their 30-juz memorization.',news2_title:'Al Idrus Wins MTQ Boyolali',news2_desc:'The team won 3 awards at the Quran Competition.',news3_title:'New Dormitory Construction',news3_desc:'Construction of a 2-story dormitory began.',news4_title:'Grand Maulid Celebration',news4_desc:'Grand maulid with over 3000 attendees.',news5_title:'Partnership with UNIBOYOLALI',news5_desc:'MoU signed for scholarship programs.',news6_title:'Social Service & Orphan Support',news6_desc:'Support for 150 orphans in Repaking Village.',donate_label:'Donation',donate_title:'Participate in Goodness',donate_desc:'Every donation becomes a light for Kalikidang students.',donate_amount_label:'Select Amount',donate_name:'Donor Name',donate_phone:'Phone',donate_purpose:'Purpose',donate_edu:'Education',donate_build:'Construction',donate_scholar:'Scholarship',donate_mosque:'Mosque',donate_submit:'Donate Now',gallery_label:'Gallery',gallery_title:'Al Idrus Pesantren Atmosphere',contact_label:'Contact Us',contact_title:'Have a Question?',contact_name:'Name',contact_subject:'Subject',contact_subject_ph:'Message subject',contact_message:'Message',contact_message_ph:'Write your message',contact_send:'Send Message',contact_address_label:'Address',contact_phone_label:'Phone',contact_hours_label:'Hours',contact_location_label:'Location',contact_location_desc:'Foot of Mount Merbabu, Wonosamodro, Boyolali.',footer_desc:'Pondok Pesantren Al Idrus Kalikidang — Nurturing knowledgeable, noble generations.',footer_links:'Quick Links',footer_programs:'Programs',footer_contact:'Contact',toast_reg_success:'Registration submitted successfully!',toast_login_success:'Successfully signed in.',toast_login_fail:'Invalid credentials.',toast_donate_success:'May Allah reward you!',toast_contact_success:'Message sent!',toast_donate_min:'Minimum Rp10,000'}};
+
+let currentLang='id';let selectedDonationAmount=500000;
+function setLang(lang){currentLang=lang;document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(T[lang][k])el.textContent=T[lang][k];});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.getAttribute('data-i18n-placeholder');if(T[lang][k])el.placeholder=T[lang][k];});document.querySelectorAll('.lang-btn,.lang-btn-m').forEach(b=>{b.style.borderColor=b.dataset.lang===lang?'var(--accent)':'';b.style.color=b.dataset.lang===lang?'var(--accent)':'';});buildNavigation();buildPrograms();buildNews();buildGallery();updatePortalContent();}
+const navItems=['home','about','programs','registration','portal','news','donation','gallery','contact'];
+function buildNavigation(){const d=document.getElementById('desktop-nav');const m=document.getElementById('mobile-nav');d.innerHTML='';m.innerHTML='';navItems.forEach(item=>{const l=T[currentLang][`nav_${item}`]||item;d.innerHTML+=`<a href="#${item}" class="nav-link text-cream text-sm" onclick="closeMobileMenu()">${l}</a>`;m.innerHTML+=`<a href="#${item}" class="text-cream text-lg hover:text-accent transition-colors" onclick="closeMobileMenu()">${l}</a>`;});}
+function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('open');}function closeMobileMenu(){document.getElementById('mobile-menu').classList.remove('open');}
+const programsData=[{key:'tahfidz',icon:'fa-quran',color:'from-primary to-primary-light'},{key:'kitab',icon:'fa-book-open',color:'from-amber-800 to-amber-600'},{key:'madrasah',icon:'fa-graduation-cap',color:'from-emerald-700 to-emerald-500'},{key:'hadroh',icon:'fa-drum',color:'from-teal-700 to-teal-500'},{key:'tahfidz_sains',icon:'fa-atom',color:'from-primary to-accent'},{key:'kemandirian',icon:'fa-seedling',color:'from-green-800 to-green-600'}];
+function buildPrograms(){const g=document.getElementById('programs-grid');g.innerHTML='';programsData.forEach((p,i)=>{const n=T[currentLang][`prog_${p.key}`]||p.key;const d=T[currentLang][`prog_${p.key}_desc`]||'';g.innerHTML+=`<div class="glass p-6 card-3d reveal" style="transition-delay:${i*.1}s"><div class="w-14 h-14 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center mb-4"><i class="fas ${p.icon} text-cream text-xl"></i></div><h3 class="font-display text-xl font-bold text-cream mb-2">${n}</h3><p class="text-muted text-sm leading-relaxed">${d}</p></div>`;});const s=document.getElementById('reg-program-select');s.innerHTML=`<option value="">${T[currentLang].reg_select}</option>`;programsData.forEach(p=>{s.innerHTML+=`<option value="${p.key}">${T[currentLang][`prog_${p.key}`]}</option>`;});}
+const newsItems=['news1','news2','news3','news4','news5','news6'];const newsImages=['alidrus-n1','alidrus-n2','alidrus-n3','alidrus-n4','alidrus-n5','alidrus-n6'];const newsDates=['2024-12-15','2024-11-28','2024-11-10','2024-09-28','2024-09-05','2024-08-17'];
+function buildNews(){const g=document.getElementById('news-grid');g.innerHTML='';newsItems.forEach((n,i)=>{const t=T[currentLang][`${n}_title`]||'';const d=T[currentLang][`${n}_desc`]||'';g.innerHTML+=`<div class="glass overflow-hidden card-3d reveal" style="transition-delay:${i*.1}s"><img src="https://picsum.photos/seed/${newsImages[i]}/600/400.jpg" alt="${t}" class="w-full h-48 object-cover"><div class="p-6"><p class="text-accent text-xs mb-2"><i class="far fa-calendar-alt mr-1"></i>${newsDates[i]}</p><h3 class="font-display text-lg font-bold text-cream mb-2">${t}</h3><p class="text-muted text-sm leading-relaxed">${d}</p></div></div>`;});}
+const galleryImages=['alidrus-g1','alidrus-g2','alidrus-g3','alidrus-g4','alidrus-g5','alidrus-g6','alidrus-g7','alidrus-g8','alidrus-g9','alidrus-g10','alidrus-g11','alidrus-g12'];
+function buildGallery(){const g=document.getElementById('gallery-grid');g.innerHTML='';galleryImages.forEach((s,i)=>{const h=i%3===0?'h-64':i%3===1?'h-48':'h-56';g.innerHTML+=`<div class="reveal cursor-pointer group relative overflow-hidden rounded-xl ${h}" style="transition-delay:${i*.05}s" onclick="openLightbox('https://picsum.photos/seed/${s}/1200/800.jpg')"><img src="https://picsum.photos/seed/${s}/600/400.jpg" alt="Gallery" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-all duration-300 flex items-center justify-center"><i class="fas fa-search-plus text-cream text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i></div></div>`;});}
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function showToast(msg,type='success'){const c=document.getElementById('toast-container');const t=document.createElement('div');const icon=type==='success'?'fa-check-circle':'fa-exclamation-circle';t.className=`toast toast-${type}`;t.innerHTML=`<i class="fas ${icon}"></i><span>${msg}</span>`;c.appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(100%)';t.style.transition='all .4s';setTimeout(()=>t.remove(),400);},4000);}
+function handleRegistration(e){e.preventDefault();showToast(T[currentLang].toast_reg_success,'success');e.target.reset();}
+function handleContact(e){e.preventDefault();showToast(T[currentLang].toast_contact_success,'success');e.target.reset();}
+function selectDonation(btn,amt){selectedDonationAmount=amt;document.querySelectorAll('.donation-amount').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');document.getElementById('custom-donation').value='';}
+function clearDonationSelection(){document.querySelectorAll('.donation-amount').forEach(b=>b.classList.remove('selected'));selectedDonationAmount=0;}
+function handleDonation(e){e.preventDefault();const c=document.getElementById('custom-donation').value;const a=c?parseInt(c):selectedDonationAmount;if(!a||a<10000){showToast(T[currentLang].toast_donate_min,'error');return;}showToast(T[currentLang].toast_donate_success,'success');e.target.reset();document.querySelectorAll('.donation-amount').forEach(b=>b.classList.remove('selected'));document.querySelector('.donation-amount:nth-child(3)').classList.add('selected');selectedDonationAmount=500000;}
+let currentPortalTab='profile';
+function handlePortalLogin(e){e.preventDefault();const n=document.getElementById('portal-nis').value;const p=document.getElementById('portal-pass').value;if(n==='12345'&&p==='alidrus2024'){showToast(T[currentLang].toast_login_success,'success');document.getElementById('portal-login').classList.add('hidden');document.getElementById('portal-dashboard').classList.remove('hidden');updatePortalContent();}else{showToast(T[currentLang].toast_login_fail,'error');}}
+function portalLogout(){document.getElementById('portal-login').classList.remove('hidden');document.getElementById('portal-dashboard').classList.add('hidden');document.getElementById('portal-nis').value='';document.getElementById('portal-pass').value='';}
+function switchPortalTab(tab){currentPortalTab=tab;document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.toggle('active',b.dataset.tab===tab);});updatePortalContent();}
+function updatePortalContent(){const el=document.getElementById('portal-content');if(!el||document.getElementById('portal-dashboard').classList.contains('hidden'))return;if(currentPortalTab==='profile'){el.innerHTML=`<div class="grid md:grid-cols-3 gap-6"><div class="text-center"><div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-3"><i class="fas fa-user text-3xl text-dark"></i></div><h4 class="text-cream font-semibold">Muhammad Rizki</h4><p class="text-accent text-sm">NIS: 12345</p></div><div class="md:col-span-2 space-y-3"><div class="flex justify-between border-b border-border pb-2"><span class="text-muted">Kelas</span><span class="text-cream">Tahfidz-Sains XII</span></div><div class="flex justify-between border-b border-border pb-2"><span class="text-muted">Asrama</span><span class="text-cream">Putra B-7</span></div><div class="flex justify-between border-b border-border pb-2"><span class="text-muted">Wali Kelas</span><span class="text-cream">Ust. Ahmad Fauzi</span></div><div class="flex justify-between border-b border-border pb-2"><span class="text-muted">Orang Tua</span><span class="text-cream">H. Syamsul Arifin</span></div><div class="flex justify-between border-b border-border pb-2"><span class="text-muted">Status</span><span class="text-primary-light font-semibold">Aktif</span></div><div class="flex justify-between"><span class="text-muted">Hafalan</span><span class="text-accent font-semibold">22 Juz</span></div></div></div>`;}else if(currentPortalTab==='grades'){el.innerHTML=`<div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-border"><th class="text-left text-muted py-3">Mapel</th><th class="text-center text-muted py-3">UTS</th><th class="text-center text-muted py-3">UAS</th><th class="text-center text-muted py-3">Tugas</th><th class="text-center text-muted py-3">Rata-rata</th></tr></thead><tbody><tr class="border-b border-border/50"><td class="py-3 text-cream">Al-Quran</td><td class="text-center text-cream">92</td><td class="text-center text-cream">95</td><td class="text-center text-cream">90</td><td class="text-center text-accent font-bold">92.3</td></tr><tr class="border-b border-border/50"><td class="py-3 text-cream">Fiqih</td><td class="text-center text-cream">88</td><td class="text-center text-cream">90</td><td class="text-center text-cream">85</td><td class="text-center text-accent font-bold">87.7</td></tr><tr class="border-b border-border/50"><td class="py-3 text-cream">Matematika</td><td class="text-center text-cream">85</td><td class="text-center text-cream">88</td><td class="text-center text-cream">92</td><td class="text-center text-accent font-bold">88.3</td></tr><tr class="border-b border-border/50"><td class="py-3 text-cream">Hadits</td><td class="text-center text-cream">90</td><td class="text-center text-cream">93</td><td class="text-center text-cream">91</td><td class="text-center text-accent font-bold">91.3</td></tr><tr class="border-b border-border/50"><td class="py-3 text-cream">Bahasa Arab</td><td class="text-center text-cream">90</td><td class="text-center text-cream">93</td><td class="text-center text-cream">91</td><td class="text-center text-accent font-bold">91.3</td></tr><tr><td class="py-3 text-cream">IPA</td><td class="text-center text-cream">82</td><td class="text-center text-cream">86</td><td class="text-center text-cream">88</td><td class="text-center text-accent font-bold">85.3</td></tr></tbody></table></div>`;}else if(currentPortalTab==='schedule'){const days=['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];const sc=[['04:30 Tahajud','04:30 Tahajud','04:30 Tahajud','04:30 Tahajud','04:30 Tahajud','04:30 Tahajud'],['06:00 Sorogan','06:00 Murajaah','06:00 Sorogan','06:00 Murajaah','06:00 Jumat','06:00 Tahfidz'],['08:00 Fiqih','08:00 MTK','08:00 Quran','08:00 IPA','08:00 Pengajian','08:00 Arab'],['09:45 MTK','09:45 Arab','09:45 Hadits','09:45 Inggris','','09:45 Kitab'],['13:00 Inggris','13:00 Aqidah','13:00 Tafsir','13:00 MTK','','13:00 Hadroh'],['16:00 Olahraga','16:00 Pramuka','16:00 Kaligrafi','16:00 Life Skill','','16:00 Dzikir']];el.innerHTML=`<div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-border">${days.map(d=>`<th class="text-center text-muted py-3 px-2">${d}</th>`).join('')}</tr></thead><tbody>${sc.map(r=>`<tr class="border-b border-border/50">${r.map(c=>`<td class="py-3 px-2 text-cream text-center text-xs">${c||'-'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}else if(currentPortalTab==='payments'){el.innerHTML=`<div class="space-y-4"><div class="flex items-center justify-between p-4 rounded-xl bg-primary/20 border border-primary-light/30"><div><p class="text-cream font-semibold">SPP Des 2024</p><p class="text-muted text-xs">JT: 10 Des 2024</p></div><span class="text-xs px-3 py-1 rounded-full bg-primary-light/20 text-primary-light border border-primary-light/30">Lunas</span></div><div class="flex items-center justify-between p-4 rounded-xl bg-primary/20 border border-primary-light/30"><div><p class="text-cream font-semibold">SPP Nov 2024</p><p class="text-muted text-xs">JT: 10 Nov 2024</p></div><span class="text-xs px-3 py-1 rounded-full bg-primary-light/20 text-primary-light border border-primary-light/30">Lunas</span></div><div class="flex items-center justify-between p-4 rounded-xl bg-accent/10 border border-accent/30"><div><p class="text-cream font-semibold">Kegiatan Semester</p><p class="text-muted text-xs">JT: 15 Jan 2025</p></div><span class="text-xs px-3 py-1 rounded-full bg-accent/20 text-accent border border-accent/30">Belum</span></div></div>`;}}
+const observer=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('active');});},{threshold:.1,rootMargin:'0px 0px -50px 0px'});function observeElements(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));}
+function animateCounters(){document.querySelectorAll('.counter').forEach(c=>{const t=parseInt(c.dataset.target);const d=2000;const s=performance.now();function u(n){const e=n-s;const p=Math.min(e/d,1);const ea=1-Math.pow(1-p,3);c.textContent=Math.floor(ea*t).toLocaleString();if(p<1)requestAnimationFrame(u);else c.textContent=t.toLocaleString();}requestAnimationFrame(u);});}
+const cObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){animateCounters();cObs.disconnect();}});},{threshold:.3});
+window.addEventListener('scroll',()=>{const nb=document.getElementById('navbar');const sy=window.scrollY;if(sy>80){nb.style.background='rgba(8,15,11,0.9)';nb.style.backdropFilter='blur(20px)';nb.style.borderBottom='1px solid rgba(197,165,90,0.1)';}else{nb.style.background='transparent';nb.style.backdropFilter='none';nb.style.borderBottom='none';}const h=document.querySelector('#hero > div:nth-child(3)');if(h&&sy<window.innerHeight){h.style.transform=`translateY(${sy*.3}px)`;h.style.opacity=1-sy/(window.innerHeight*.8);}});
+document.addEventListener('mousemove',e=>{document.querySelectorAll('.card-3d').forEach(c=>{const r=c.getBoundingClientRect();const x=e.clientX-r.left;const y=e.clientY-r.top;if(x>=0&&x<=r.width&&y>=0&&y<=r.height){c.style.transform=`perspective(1000px) rotateX(${((y-r.height/2)/r.height)*-8}deg) rotateY(${((x-r.width/2)/r.width)*8}deg) translateY(-4px)`;}else{c.style.transform='';}});});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('preloader').classList.add('hidden');},1500);});
+document.addEventListener('DOMContentLoaded',()=>{setLang('id');observeElements();setTimeout(()=>{const s=document.querySelector('.counter')?.closest('section');if(s)cObs.observe(s);},100);});
+</script>
+</body>
+</html>
